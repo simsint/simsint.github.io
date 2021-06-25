@@ -35,10 +35,10 @@
                 id="navbarNav">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="profile.html">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="appointments.html">Appointments</a></li>
                     <li class="nav-item"><a class="nav-link" href="checklist.html">Checklist</a></li>
-                    <li class="nav-item"><a class="nav-link" href="checklist-2.html">Checklist 2</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="checklist-2.html">Checklist 2</a></li>
                     <li class="nav-item"><a class="nav-link" href="forms.html">Forms</a></li>
                     <li class="nav-item"><a class="nav-link" onclick="signOut()">Sign Out</a></li>
                 </ul>
@@ -46,24 +46,13 @@
         </div>
     </nav>
     <main class="page cv-page">
-        <section class="border-bottom portfolio-block">
-            <div class="heading">
-                <h2>Profile</h2>
+        <section class="portfolio-block">
+            <div class="text-uppercase text-center heading">
+                <h2>Check list 2</h2>
             </div>
-            <div class="container">
-                <form id="profile-form">
-                    <div class="form-group text-center"><img style="height: 200px;" src="assets/img/user.svg"></div>
-                    <div class="form-group"><label>Email</label><input class="form-control" type="text" readonly="" name="email"></div>
-                    <div class="form-group"><label>First Name</label><input class="form-control" type="text" readonly="" name="given_name"></div>
-                    <div class="form-group"><label>Middle Name</label><input class="form-control" type="text" readonly="" name="middle_name"></div>
-                    <div class="form-group"><label>Last Name</label><input class="form-control" type="text" readonly="" name="family_name"></div>
-                    <div class="form-group"><label>Emirates ID</label><input class="form-control" type="text" readonly="" name="preferred_username"></div>
-                    <div class="form-group"><label>Phone</label><input class="form-control" type="text" readonly="" name="phone_number"></div>
-                    <div class="form-group"><label>Date Of Birth</label><input class="form-control" type="text" readonly="" name="birthdate"></div>
-                    <div class="form-group"><label>Nationality</label><input class="form-control" type="text" readonly="" name="locale"></div>
-                    <div class="form-group"><label>Address</label><input class="form-control" type="text" readonly="" name="address"></div>
-                </form>
-            </div>
+        </section>
+        <section>
+            <div class="container" id="checklist"></div>
         </section>
     </main>
     <footer class="page-footer">
@@ -72,7 +61,103 @@
                 <p style="margin: 0;">Copyright&nbsp;© Telepsych+&nbsp;</p>
             </div>
         </div>
-    </footer>
+    </footer><script>
+  var currentTab = 0; // Current tab is set to be the first tab (0)
+  showTab(currentTab); // Display the current tab
+
+  function showTab(n) {
+    // This function will display the specified tab of the form...
+    var x = document.getElementsByClassName("tab");
+    x[n].style.display = "block";
+    //... and fix the Previous/Next buttons:
+    if (n == 0) {
+      document.getElementById("prevBtn").style.display = "none";
+    } else {
+      document.getElementById("prevBtn").style.display = "inline";
+    }
+    if (n == x.length - 1) {
+      document.getElementById("nextBtn").innerHTML = "Submit";
+    } else {
+      document.getElementById("nextBtn").innerHTML = "Next";
+      document.getElementById("skipBtn").innerHTML = "Skip";
+      document.getElementById("skipBtn").disabled = false;
+    }
+    //... and run a function that will display the correct step indicator:
+    fixStepIndicator(n);
+    $("html").animate(
+      {
+        scrollTop: 0,
+      },
+      "slow"
+    );
+  }
+
+  function nextPrev(n) {
+    // This function will figure out which tab to display
+    var x = document.getElementsByClassName("tab");
+    // Exit the function if any field in the current tab is invalid:
+    if (n == 1 && !validateForm()) return false;
+    // Hide the current tab:
+    x[currentTab].style.display = "none";
+    // Increase or decrease the current tab by 1:
+    currentTab = currentTab + n;
+    // if you have reached the end of the form...
+    if (currentTab == x.length - 1) {
+      document.getElementById("nextBtn").innerHTML = "Submit";
+      document.getElementById("skipBtn").disabled = true;
+    }
+    if (currentTab >= x.length) {
+      // ... the form gets submitted:
+      onSubmitChecklist();
+      return false;
+    }
+    // Otherwise, display the correct tab:
+    showTab(currentTab);
+  }
+
+  function validateForm() {
+    // This function deals with validation of the form fields
+    var x,
+      y,
+      i,
+      valid = true;
+    x = document.getElementsByClassName("tab");
+    y = x[currentTab].getElementsByTagName("input");
+    // A loop that checks every input field in the current tab:
+    for (i = 0; i < y.length; i++) {
+      // If a field is empty...
+      if (y[i].value == "") {
+        // add an "invalid" class to the field:
+        y[i].className += " invalid";
+        // and set the current valid status to false
+        valid = false;
+      }
+    }
+    // If the valid status is true, mark the step as finished and valid:
+    if (valid) {
+      document.getElementsByClassName("step")[currentTab].className +=
+        " finish";
+    }
+    return valid; // return the valid status
+  }
+
+  function fixStepIndicator(n) {
+    // This function removes the "active" class of all steps...
+    var i,
+      x = document.getElementsByClassName("step");
+    for (i = 0; i < x.length; i++) {
+      x[i].className = x[i].className.replace(" active", "");
+    }
+    //... and adds the "active" class on the current step:
+    x[n].className += " active";
+    i = 0;
+    while (i < n) {
+      x[i].className += " finish";
+      i++;
+    }
+  }
+</script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
@@ -90,7 +175,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js" crossorigin="anonymous"></script>
     <script src="assets/js/script.min.js"></script>
     <script src="assets/js/script-1.min.js"></script>
-    <script src="assets/js/profile.min.js"></script>
+    <script src="assets/js/survey-content.min.js"></script>
+    <script src="assets/js/checklist-2.min.js"></script>
 </body>
 
 </html>

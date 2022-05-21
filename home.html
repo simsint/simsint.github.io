@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/css/intlTelInput.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spin.js/4.1.0/spin.min.css" integrity="sha512-ssYEuK9Epo/48VIlBWTFosf1izrgGZqEMELJP+L7Clh0nvaOSTg87dM+Z8L+KKjrPdMbMvKYOOnzBOkNMhWFsg==" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/styles.min.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLT59YNMCR"></script>
@@ -37,6 +38,7 @@
                     <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="appointments.html">Appointments</a></li>
                     <li class="nav-item"><a class="nav-link" href="checklist.html">Checklist</a></li>
+                    <li class="nav-item"><a class="nav-link" href="checklist-2.html">Checklist 2</a></li>
                     <li class="nav-item"><a class="nav-link" href="forms.html">Forms</a></li>
                     <li class="nav-item"><a class="nav-link" onclick="signOut()">Sign Out</a></li>
                 </ul>
@@ -54,9 +56,11 @@
                     <li
                         class="mb-2"><span class="d-block p-3 bg-secondary text-white rounded">Basic Information Arabic&nbsp; (Adult)<button class="btn btn-primary action float-right mt-n2 rounded" type="button" data-action="pending-form" data-form="./adult-form-ar.html">Fill Now</button></span></li>
                         <li
-                            class="mb-2"><span class="d-block p-3 bg-secondary text-white rounded">Checklist<button class="btn btn-primary float-right mt-n2 rounded action" type="button" data-action="checklist" data-form="./checklist.html">Fill Now</button></span></li>
+                            class="mb-2"><span class="d-block p-3 bg-secondary text-white rounded">Checklist<a class="btn btn-primary float-right mt-n2 rounded action" role="button" data-action="pending-form" data-form="./psychology-consent-form.html" href="checklist-2.html">Fill Now</a></span></li>
                             <li
-                                class="mb-2"><span class="d-block p-3 bg-secondary text-white rounded">Psychology Consent<button class="btn btn-primary float-right mt-n2 rounded action" type="button" data-action="pending-form" data-form="./psychology-consent-form.html">Fill Now</button></span></li>
+                                class="mb-2"><span class="d-block p-3 bg-secondary text-white rounded">Checklist 2<button class="btn btn-primary float-right mt-n2 rounded action" type="button" data-action="checklist" data-form="./checklist.html">Fill Now</button></span></li>
+                                <li
+                                    class="mb-2"><span class="d-block p-3 bg-secondary text-white rounded">Psychology Consent<button class="btn btn-primary float-right mt-n2 rounded action" type="button" data-action="pending-form" data-form="./psychology-consent-form.html">Fill Now</button></span></li>
                 </ul>
             </div>
         </section>
@@ -88,6 +92,7 @@
     <script src="https://cdn.jsdelivr.net/npm/form2js@1.0.0/src/form2js.js" integrity="sha256-QJRMHKW7/I7Qk65HxatzQkkRlkHxO0WX65nfgxgnTMw=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/i18n/datepicker.en.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js" crossorigin="anonymous"></script>
     <script src="assets/js/script.min.js"></script>
     <script src="assets/js/script-1.min.js"></script>
     <script src="assets/js/appointments.min.js"></script>
